@@ -31,8 +31,7 @@ function Home() {
   ];
   return (
     <div>
-      <Categories categories={categories} />;
-      <Outlet />
+      <Categories categories={categories} />
     </div>
   );
 }
