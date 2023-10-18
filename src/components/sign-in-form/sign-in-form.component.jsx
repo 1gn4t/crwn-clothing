@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
   singInAuthUserWithEmaiAndPassword,
 } from "../../utils/firebase/firebase.utils";
+
 import FormInput from "../form-input/form-input.component";
-import "./sign-in-form.style.scss";
 import Button from "../button/button.component";
+
+import "./sign-in-form.style.scss";
 
 export default function SingInForm({ handlerLogGoogle }) {
   const [formField, setFormField] = useState({
@@ -25,8 +27,7 @@ export default function SingInForm({ handlerLogGoogle }) {
   const handelSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { user } = await singInAuthUserWithEmaiAndPassword(email, password);
-      console.log(user);
+      await singInAuthUserWithEmaiAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/invalid-login-credentials") {
@@ -43,8 +44,7 @@ export default function SingInForm({ handlerLogGoogle }) {
 
   const logGoogleUser = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-      const userDocRef = await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
     } catch (error) {
       console.log(error);
     }
