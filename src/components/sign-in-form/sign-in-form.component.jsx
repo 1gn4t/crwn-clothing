@@ -8,7 +8,7 @@ import {
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
-import "./sign-in-form.style.scss";
+import { Container, ButtonContainer } from "./sign-in-form.style.jsx";
 
 export default function SingInForm({ handlerLogGoogle }) {
   const [formField, setFormField] = useState({
@@ -51,7 +51,7 @@ export default function SingInForm({ handlerLogGoogle }) {
   };
 
   return (
-    <div className="sign-up-container">
+    <Container>
       <h2>I already have an acccount</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handelSubmit}>
@@ -71,13 +71,13 @@ export default function SingInForm({ handlerLogGoogle }) {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonContainer>
           <Button type="submit">Sing in</Button>
           <Button type="button" onClick={logGoogleUser} buttonType="google">
             Google sing in
           </Button>
-        </div>
+        </ButtonContainer>
       </form>
-    </div>
+    </Container>
   );
 }
